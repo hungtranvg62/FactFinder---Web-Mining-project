@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  rules:
+    name: Repo rules (docs/rules.md)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history, so we can read the PR's commit messages
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Branch name is {type}/{name}-{task}
+        if: github.event_name == 'pull_request'
+        env:
+          BRANCH: ${{ github.head_ref }}
+        run: python .github/scripts/check_rules.py branch "$BRANCH"
+
+      - name: Commit messages are "type: short text"
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: python .github/scripts/check_rules.py commits "$BASE_SHA" "$HEAD_SHA"
+
+      - name: No data, models, large files or API keys
+        run: python .github/scripts/check_rules.py files
+
+      - name: Links in Markdown docs work
+        run: python .github/scripts/check_rules.py links
+
+      - name: Python files have no syntax errors
+        run: python -m compileall -q src app

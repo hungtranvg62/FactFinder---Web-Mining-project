@@ -8,7 +8,7 @@ FactFinder compares classical and neural search methods for scientific claim ver
 
 - **Course:** IT4868E Web Mining, group project
 - **Time:** 6 weeks
-- **Team:** Tran Vuong Hung (leader), Tran Ngoc Tuan, Nguyen Hoai Anh
+- **Team:** Tran Vuong Hung (leader, GitHub `hungtranvg62`), Tran Ngoc Tuan (`labrynth205-ship-it`), Nguyen Hoai Anh (`rach-1873`)
 - **Dataset:** BEIR SciFact only
 
 **What changed from v1**
@@ -170,6 +170,7 @@ Everyone uses the same run file format and repo layout, so results merge without
 
 ```
 factfinder/
+  docs/                 (this plan, rules.md)
   data/raw/  data/processed/   (not pushed, made by data.py)
   runs/dev/  runs/test/  runs/train/
   src/common/           (Hung, frozen: data.py, preprocess.py, evaluate.py)
@@ -197,11 +198,11 @@ Method names: `tfidf`, `bm25`, `bm25_rm3`, `lsi`, `dense_bge`, `medcpt`, `splade
 - Tuan's reference BM25 run also covers the train claims (`runs/train/ref_bm25.trec`). Hard negatives come from this file.
 - `rerank.py` takes the model as an argument: `python src/fusion_rerank/rerank.py test --model <name or path>`. A fine-tuned model is then only a different path.
 
-**Branch and review rules**
+**Branch and review rules** (full version with examples: `docs/rules.md`)
 
 1. Never commit to `main`. `main` must always run.
 2. One branch per task, named `{type}/{name}-{task}`, for example `feature/hung-dense-bge` or `fix/anh-rrf`.
-3. Push, open a Pull Request, get 1 teammate's review, then merge and delete the branch.
+3. Push, open a Pull Request, get Hung's approval (required by `.github/CODEOWNERS`), then merge and delete the branch.
 4. Changes to `src/common/` need all 3 members to agree.
 
 **Other rules**
@@ -242,7 +243,7 @@ Open question: the week numbers here count from the project start. Check them ag
 
 **Everyone**
 
-- [ ] Read this plan and ask questions in the first meeting
+- [ ] Read this plan and `docs/rules.md`, and ask questions in the first meeting
 - [ ] Clone the repo and install `requirements.txt`
 - [ ] Skim the BEIR paper (Thakur et al., 2021) and the SciFact paper (Wadden et al., 2020)
 

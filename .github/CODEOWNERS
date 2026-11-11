@@ -1,0 +1,8 @@
+# Every file in the repo is owned by the team leader.
+# With "Require review from Code Owners" on main, GitHub asks this person
+# to review every PR (and notifies them), and the PR cannot merge until they approve.
+#
+# Team: Hung = hungtranvg62 (leader), Tuan = labrynth205-ship-it, Hoai Anh = rach-1873.
+# Do NOT add the others as owners of their folders here: with several owners, ONE
+# owner's approval is enough, so PRs to those folders would no longer need Hung.
+* @hungtranvg62
