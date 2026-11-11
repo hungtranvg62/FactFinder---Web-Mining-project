@@ -18,6 +18,10 @@ cp .env.example .env              # then add your API keys
 python src/common/data.py         # downloads SciFact into data/ (run once)
 ```
 
+`data.py` prints a **dev fingerprint**. It must be `e7136399` for everyone; if yours is different, tell Hung.
+
+Load the data in your code with `from src.common.data import load_corpus, load_queries, load_qrels, load_labels, doc_text`, and run your scripts from the repo root with `python -m`, for example `python -m src.lexical.bm25`.
+
 ## Layout
 
 ```
