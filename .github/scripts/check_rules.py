@@ -25,11 +25,14 @@ FORBIDDEN_DIRS = ("data/", "models/", "indexes/")
 FORBIDDEN_EXTS = (".faiss", ".index", ".npy", ".pt", ".bin", ".safetensors", ".pkl")
 MAX_FILE_MB = 20
 
+# (?<!...) makes sure the key starts a new word, so "disk-based-index-..." is not
+# mistaken for an "sk-..." key.
+_START = r"(?<![0-9A-Za-z_\-])"
 SECRET_PATTERNS = {
-    "Gemini/Google API key": re.compile(r"AIza[0-9A-Za-z_\-]{35}"),
-    "Groq API key": re.compile(r"gsk_[0-9A-Za-z]{20,}"),
-    "Hugging Face token": re.compile(r"hf_[0-9A-Za-z]{30,}"),
-    "OpenAI-style key": re.compile(r"sk-[0-9A-Za-z_\-]{20,}"),
+    "Gemini/Google API key": re.compile(_START + r"AIza[0-9A-Za-z_\-]{35}"),
+    "Groq API key": re.compile(_START + r"gsk_[0-9A-Za-z]{20,}"),
+    "Hugging Face token": re.compile(_START + r"hf_[0-9A-Za-z]{30,}"),
+    "OpenAI-style key": re.compile(_START + r"sk-[0-9A-Za-z_\-]{20,}"),
 }
 
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")

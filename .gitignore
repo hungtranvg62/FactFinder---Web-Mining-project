@@ -10,6 +10,7 @@ indexes/
 *.pt
 *.bin
 *.safetensors
+*.pkl
 
 # Secrets (never push). .env.example is the template and IS pushed.
 .env
