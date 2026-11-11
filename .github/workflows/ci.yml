@@ -22,13 +22,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Branch name is {type}/{name}-{task}
+      - name: 'Branch name is {type}/{name}-{task}'
         if: github.event_name == 'pull_request'
         env:
           BRANCH: ${{ github.head_ref }}
         run: python .github/scripts/check_rules.py branch "$BRANCH"
 
-      - name: Commit messages are "type: short text"
+      - name: 'Commit messages are "type: short text"'
         if: github.event_name == 'pull_request'
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
