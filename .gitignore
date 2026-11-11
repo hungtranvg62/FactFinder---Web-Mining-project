@@ -1,0 +1,36 @@
+# Data, made by src/common/data.py (never push)
+data/
+
+# Models, indexes, embeddings (never push)
+models/
+indexes/
+*.faiss
+*.index
+*.npy
+*.pt
+*.bin
+*.safetensors
+
+# Secrets (never push). .env.example is the template and IS pushed.
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Gradio
+.gradio/
+flagged/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
